@@ -23,13 +23,15 @@ A simple web application for user registration and login, supporting multiple us
 3. Open index.html in a web browser to view the login system.
 
 ## Usage
-- To register a new user, fill in the registration form with a name, email, and password, then click Register.
+- To register a new user, fill in the registration form with a name, dob, and password, then click Register.
 - To log in, use the registered email and password, then click Login.
 - After logging in, you'll be redirected to the home page with a welcome message.
 
 ## Screenshot
 
-<p align="center"> <img src="register.png" width="300"/> <img src="login.png" width="300"/> <img src="dash.png" width="1000"/> </p>
+<p align="center"> <img src="register.png" width="300"/> 
+<img src="login.png" width="300"/> 
+<img src="dash.png" width="1000"/> </p>
 
 
 ## License
