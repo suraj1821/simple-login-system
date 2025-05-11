@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #form {
+            width: 100%;
+            max-width: 400px;
+        }
+        fieldset {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        legend {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        #showPwd {
+            position: absolute;
+            right: 10px;
+            top: 35%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        #btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 480px) {
+            fieldset {
+                padding: 15px;
+            }
+            legend {
+                font-size: 1rem;
+            }
+            input, #btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+            #btn {
+                font-size: 15px;
+            }
+            label {
+                font-size: 14px;
+            }
+            .input-container input {
+                padding: 12px 15px;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            #form {
+                max-width: 350px;
+            }
+            input, #btn {
+                font-size: 13px;
+                padding: 8px;
+            }
+            #btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="form">
+        <fieldset>
+            <legend>Registration Form</legend>
+            <label for="un">Username</label>
+            <input type="text" id="un"><br><br>
+
+            <label for="pwd">Password</label>
+            <div class="input-container">
+                <input type="password" id="pwd">
+                <span id="showPwd" class="fa fa-eye"></span>
+            </div><br><br>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob"><br><br>
+
+            <button type="submit" id="btn">Submit</button>
+        </fieldset>
+    </form>
+
+    <script>
+        let form = document.getElementById("form");
+        let un = document.getElementById("un");
+        let pwd = document.getElementById("pwd");
+        let dob = document.getElementById("dob");
+
+        let showPwd = document.getElementById("showPwd");
+
+        // Password visibility toggle
+        showPwd.addEventListener("click", () => {
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                showPwd.classList.remove("fa-eye");
+                showPwd.classList.add("fa-eye-slash");
+            } else {
+                pwd.type = "password";
+                showPwd.classList.remove("fa-eye-slash");
+                showPwd.classList.add("fa-eye");
+            }
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (un.value.trim() === "" || pwd.value.trim() === "" || dob.value === "") {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (pwd.value.length < 6) {
+                alert("Password must be at least 6 characters.");
+                return;
+            }
+
+            // let users = JSON.parse(localStorage.getItem("users")) || [];
+            
+            let users;
+            try {
+              users = JSON.parse(localStorage.getItem("users"));
+              if (!Array.isArray(users)) {
+                users = [];
+              }
+            } catch (e) {
+              users = [];
+            }
+
+
+            if (users.some(user => user.username === un.value)) {
+                alert("Username already exists!");
+                return;
+            }
+
+            let newUser = {
+                username: un.value,
+                password: pwd.value,
+                dateofbirth: dob.value
+            };
+
+            users.push(newUser);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Registration successful!");
+
+            form.reset();
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+    </script>
+</body>
+</html>
