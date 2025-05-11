@@ -28,11 +28,14 @@ A simple web application for user registration and login, supporting multiple us
 - After logging in, you'll be redirected to the home page with a welcome message.
 
 ## Screenshot
+<p align="center">
+  <img src="register.png" width="300" />
+  <img src="login.png" width="300" />
+</p>
 
-<p align="center"> <img src="register.png" width="300"/> 
-<img src="login.png" width="300"/> 
-<img src="dash.png" width="1000"/> </p>
-
+<p align="center">
+  <img src="dash.png" width="1000" />
+</p>
 
 ## License
 This project is open-source and available under the MIT License.
