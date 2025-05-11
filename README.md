@@ -29,9 +29,7 @@ A simple web application for user registration and login, supporting multiple us
 
 ## Screenshot
 
-![Register Page](register.png)
-![Login Page](login.png)
-![Dashboard Page](dash.png)
+<p align="center"> <img src="register.png" width="300"/> <img src="login.png" width="300"/> <img src="dash.png" width="1000"/> </p>
 
 
 ## License
