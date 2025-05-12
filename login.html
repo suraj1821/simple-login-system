@@ -31,24 +31,20 @@
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
         legend {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 10px;
             text-transform: capitalize;
         }
-
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
         }
-
         .input-container {
             position: relative;
         }
-
         input {
             width: 100%;
             padding: 8px 10px;
@@ -58,12 +54,10 @@
             font-size: 14px;
             transition: border-color 0.3s ease;
         }
-
         input:focus {
             border-color: #007bff;
             outline: none;
         }
-
         #showPwd {
             position: absolute;
             right: 10px;
@@ -73,7 +67,6 @@
             cursor: pointer;
             color: #333;  
         }
-
         #btn {
             width: 100%;
             padding: 10px;
@@ -85,25 +78,20 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         #btn:hover {
             background-color: #0056b3;
         }
-
         @media (max-width: 480px) {
             fieldset {
                 padding: 15px;
             }
-
             legend {
                 font-size: 1rem;
             }
-
             input, #btn {
                 font-size: 14px;
                 padding: 10px;
             }
-
             #btn {
                 font-size: 15px;
             }
@@ -128,28 +116,28 @@
     </form>
 
 <script>
-        let form = document.getElementById("form");
-        let un = document.getElementById("un");
-        let pwd = document.getElementById("pwd");
+        let form=document.getElementById("form");
+        let un=document.getElementById("un");
+        let pwd=document.getElementById("pwd");
 
-        let showPwd = document.getElementById("showPwd");
+        let showPwd=document.getElementById("showPwd");
 
-        showPwd.addEventListener("click", () => {
-            if (pwd.type === "password") {
-                pwd.type = "text";
+        showPwd.addEventListener("click",()=>{
+            if (pwd.type==="password") {
+                pwd.type="text";
                 showPwd.classList.remove("fa-eye");
                 showPwd.classList.add("fa-eye-slash");
             } else {
-                pwd.type = "password";
+                pwd.type="password";
                 showPwd.classList.remove("fa-eye-slash");
                 showPwd.classList.add("fa-eye");
             }
         });
 
-        form.addEventListener("submit", (e) => {
+        form.addEventListener("submit",(e)=>{
             e.preventDefault();
 
-            if (un.value.trim() === "" || pwd.value.trim() === "") {
+            if (un.value.trim()==="" || pwd.value.trim()==="") {
                 alert("Both fields are required!");
                 return;
             }
@@ -161,22 +149,22 @@
             try {
               users = JSON.parse(localStorage.getItem("users"));
               if (!Array.isArray(users)) {
-                users = [];
+                users=[];
               }
-            } catch (e) {
-              users = [];
+            } catch(e){
+              users=[];
             }
 
             // Find the user by matching username and password
-    let user = users.find(user => user.username === un.value && user.password === pwd.value);
+    let user=users.find(user=>user.username===un.value && user.password===pwd.value);
 
     if (user) {
         // Store the user data in localStorage (current logged-in user)
         localStorage.setItem("loginInUser", JSON.stringify(user));
 
         // Log the user login history
-        let loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
-        if (!loginHistory.some(history => history.username === user.username)) {
+        let loginHistory=JSON.parse(localStorage.getItem("loginHistory")) || [];
+        if (!loginHistory.some(history=>history.username===user.username)) {
             loginHistory.push({
                 username: user.username,
                 loginTime: new Date().toISOString() // Store login time
@@ -186,7 +174,7 @@
 
         alert("Login successful!");
         form.reset();
-        window.location.href = 'home.html'; // Redirect to the home page or dashboard
+        window.location.href='home.html'; // Redirect to the home page or dashboard
     } else {
         alert("Invalid username or password.");
     }
